@@ -8,18 +8,27 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+import AVFoundation
 
+class ViewController: UIViewController {
+    
+    var helloSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("1", ofType: "wav")!)
+    var audioPlayer = AVAudioPlayer()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        audioPlayer = AVAudioPlayer(contentsOfURL: helloSound, error: nil)
+        audioPlayer.prepareToPlay()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
-
-
+    
+    @IBAction func helloButton(sender: AnyObject) {
+        audioPlayer.play()
+    }
+    
 }
-
